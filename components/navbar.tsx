@@ -111,14 +111,11 @@ export function Navbar() {
           </a>
         </nav>
 
-        <div className="flex items-center gap-2">
-          <MobileNav />
-          <div className="hidden md:block">
-            <ThemeToggle />
-          </div>
+        <div className="flex items-center gap-2 md:gap-4">
           <div className="md:hidden">
-            <ThemeToggle />
+            <MobileNav />
           </div>
+          <ThemeToggle />
         </div>
       </div>
     </header>

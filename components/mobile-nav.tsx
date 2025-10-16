@@ -27,7 +27,7 @@ export function MobileNav() {
       </button>
 
       {isOpen && (
-        <div className="absolute top-16 left-0 right-0 bg-background border-b border-border/60 backdrop-blur supports-[backdrop-filter]:bg-background/95 z-40">
+        <div className="fixed top-16 left-0 right-0 bottom-0 bg-background border-b border-border/60 backdrop-blur supports-[backdrop-filter]:bg-background/95 z-40 overflow-y-auto">
           <nav className="flex flex-col p-4 gap-2">
             <Link
               href="/"
