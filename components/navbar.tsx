@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { ThemeToggle } from "./theme-toggle"
 import { AnimatedLogo } from "./animated-logo"
+import { MobileNav } from "./mobile-nav"
 import {
   NavigationMenu,
   NavigationMenuList,
@@ -23,10 +24,10 @@ export function Navbar() {
   const pathname = usePathname()
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/60 backdrop-blur supports-[backdrop-filter]:bg-background/70">
-      <div className="mx-auto max-w-screen-2xl px-6 py-3 flex items-center justify-between">
+      <div className="mx-auto max-w-screen-2xl px-4 sm:px-6 py-3 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2" aria-label="XPERTCS Home">
           <AnimatedLogo />
-          <span className="text-lg font-semibold tracking-tight">XPERTCS</span>
+          <span className="text-base sm:text-lg font-semibold tracking-tight">XPERTCS</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-4">
@@ -108,11 +109,16 @@ export function Navbar() {
           >
             Help Desk
           </a>
-          <ThemeToggle />
         </nav>
 
-        <div className="md:hidden">
-          <ThemeToggle />
+        <div className="flex items-center gap-2">
+          <MobileNav />
+          <div className="hidden md:block">
+            <ThemeToggle />
+          </div>
+          <div className="md:hidden">
+            <ThemeToggle />
+          </div>
         </div>
       </div>
     </header>

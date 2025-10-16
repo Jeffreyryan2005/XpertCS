@@ -16,6 +16,8 @@ type CardProps = {
 function TiltCard({ title, desc, bullets, icon }: CardProps) {
   const ref = useRef<HTMLDivElement | null>(null)
   const handle = (e: React.MouseEvent) => {
+    if (window.innerWidth < 768) return
+
     const el = ref.current
     if (!el) return
     const rect = el.getBoundingClientRect()
@@ -41,11 +43,11 @@ function TiltCard({ title, desc, bullets, icon }: CardProps) {
       onMouseMove={handle}
       onMouseLeave={leave}
       className={cn(
-        "group relative rounded-3xl border border-border/60 bg-card/60 p-6",
+        "group relative rounded-2xl sm:rounded-3xl border border-border/60 bg-card/60 p-4 sm:p-6",
         "transition-all duration-300 will-change-transform cursor-pointer",
         "hover:-translate-y-1 hover:shadow-[0_18px_60px_-24px_rgba(0,0,0,0.6)]",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
-        "before:absolute before:inset-0 before:rounded-3xl before:opacity-0 before:transition-opacity before:duration-300",
+        "before:absolute before:inset-0 before:rounded-2xl sm:before:rounded-3xl before:opacity-0 before:transition-opacity before:duration-300",
         "before:bg-[conic-gradient(from_180deg_at_50%_50%,#22d3ee,rgba(99,102,241,0.7),#34d399,#f59e0b,#22d3ee)]",
         "group-hover:before:opacity-30",
       )}
@@ -60,16 +62,16 @@ function TiltCard({ title, desc, bullets, icon }: CardProps) {
             "radial-gradient(240px 120px at var(--px, 50%) var(--py, 50%), rgba(59,130,246,0.18), transparent), radial-gradient(240px 120px at calc(var(--px, 50%) - 80px) calc(var(--py, 50%) + 40px), rgba(16,185,129,0.14), transparent)",
         }}
       />
-      <div className="flex items-start gap-4">
-        <div className="relative grid size-16 md:size-20 place-items-center select-none transition-transform duration-500 group-hover:scale-110">
+      <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
+        <div className="relative grid size-12 sm:size-16 md:size-20 place-items-center select-none transition-transform duration-500 group-hover:scale-110 flex-shrink-0">
           {/* halo ping */}
           <span className="pointer-events-none absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(closest-side,theme(colors.primary.DEFAULT/_25),transparent_70%)]" />
           {icon}
         </div>
-        <div>
-          <h3 className="text-xl font-semibold">{title}</h3>
-          <p className="mt-1 text-muted-foreground">{desc}</p>
-          <ul className="mt-3 grid gap-1 text-sm text-muted-foreground list-disc pl-4">
+        <div className="flex-1">
+          <h3 className="text-lg sm:text-xl font-semibold">{title}</h3>
+          <p className="mt-1 text-muted-foreground text-sm sm:text-base">{desc}</p>
+          <ul className="mt-2 sm:mt-3 grid gap-1 text-xs sm:text-sm text-muted-foreground list-disc pl-4">
             {bullets.map((b) => (
               <li key={b}>{b}</li>
             ))}
@@ -109,14 +111,14 @@ const cards: CardProps[] = [
 
 export function Services() {
   return (
-    <section id="services" className="relative overflow-hidden py-20">
+    <section id="services" className="relative overflow-hidden py-12 sm:py-16 lg:py-20">
       <AmbientBackground lines={36} opacity={0.1} speed={0.006} />
-      <div className="mx-auto max-w-screen-2xl px-6">
-        <h2 className="text-pretty text-3xl md:text-4xl font-semibold">What we do</h2>
-        <p className="mt-2 text-muted-foreground max-w-prose">
+      <div className="mx-auto max-w-screen-2xl px-4 sm:px-6">
+        <h2 className="text-pretty text-2xl sm:text-3xl md:text-4xl font-semibold">What we do</h2>
+        <p className="mt-2 text-muted-foreground max-w-prose text-sm sm:text-base">
           We combine consulting expertise with immersive UI to improve clarity and conversion.
         </p>
-        <div className="mt-8 grid gap-6 sm:grid-cols-2">
+        <div className="mt-6 sm:mt-8 grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2">
           {cards.map((c) => (
             <TiltCard key={c.title} {...c} />
           ))}

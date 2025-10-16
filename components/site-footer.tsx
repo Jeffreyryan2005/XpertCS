@@ -2,20 +2,20 @@ import { AmbientBackground } from "./hero_background_canvas"
 
 export function SiteFooter() {
   return (
-    <footer className="relative mt-16 overflow-hidden border-t border-border/60 bg-secondary/30" id="helpdesk">
+    <footer className="relative mt-12 sm:mt-16 overflow-hidden border-t border-border/60 bg-secondary/30" id="helpdesk">
       <div className="pointer-events-none absolute top-0 inset-x-0 h-[2px] bg-[linear-gradient(90deg,#22d3ee,45%,#60a5fa,70%,#a78bfa,95%,#22d3ee)] animate-bg-pan-x opacity-70" />
       <AmbientBackground lines={18} opacity={0.06} speed={0.0035} />
-      <div className="mx-auto max-w-screen-2xl px-6 py-10 grid gap-8 md:grid-cols-4">
+      <div className="mx-auto max-w-screen-2xl px-4 sm:px-6 py-8 sm:py-10 grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <h3 className="font-semibold">About Us</h3>
-          <p className="mt-2 text-muted-foreground text-sm leading-relaxed">
+          <h3 className="font-semibold text-sm sm:text-base">About Us</h3>
+          <p className="mt-2 text-muted-foreground text-xs sm:text-sm leading-relaxed">
             We are a fast-growing consultancy delivering practical solutions in cloud, secure infrastructure, and IT
             transformation—paired with immersive UI.
           </p>
         </div>
         <div>
-          <h3 className="font-semibold">Our Services</h3>
-          <ul className="mt-2 text-sm text-muted-foreground grid gap-1">
+          <h3 className="font-semibold text-sm sm:text-base">Our Services</h3>
+          <ul className="mt-2 text-xs sm:text-sm text-muted-foreground grid gap-1">
             <li>Cloud Technologies</li>
             <li>Secure Infrastructure</li>
             <li>IT Consultancy</li>
@@ -23,8 +23,8 @@ export function SiteFooter() {
           </ul>
         </div>
         <div>
-          <h3 className="font-semibold">Quick links</h3>
-          <ul className="mt-2 text-sm text-muted-foreground grid gap-1">
+          <h3 className="font-semibold text-sm sm:text-base">Quick links</h3>
+          <ul className="mt-2 text-xs sm:text-sm text-muted-foreground grid gap-1">
             <li>
               <a href="#services">Services</a>
             </li>
@@ -52,8 +52,8 @@ export function SiteFooter() {
           </ul>
         </div>
         <div>
-          <h3 className="font-semibold">Contact Info</h3>
-          <address className="not-italic mt-2 text-sm text-muted-foreground">
+          <h3 className="font-semibold text-sm sm:text-base">Contact Info</h3>
+          <address className="not-italic mt-2 text-xs sm:text-sm text-muted-foreground">
             Xpert Consultancy Ltd
             <br />
             71-75 Shelton Street, London, England, WC2H 9JQ
