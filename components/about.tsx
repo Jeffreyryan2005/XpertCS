@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { AmbientBackground } from "./hero_background_canvas"
 
 export function About() {
@@ -15,8 +16,43 @@ export function About() {
             industry‑specific requirements of each client and responding to them with quality service and support.
           </p>
         </div>
-        <div className="rounded-3xl border border-border/60 bg-card h-56 md:h-64 grid place-items-center">
-          <span className="text-sm text-muted-foreground">Illustration placeholder</span>
+        <div className="grid grid-cols-2 gap-4">
+          <div className="rounded-2xl overflow-hidden border border-border/60 bg-card h-32">
+            <Image
+              src="/modern-cloud-infrastructure-technology.jpg"
+              alt="Cloud infrastructure technology"
+              width={256}
+              height={256}
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="rounded-2xl overflow-hidden border border-border/60 bg-card h-32">
+            <Image
+              src="/secure-data-protection-cybersecurity.jpg"
+              alt="Secure data protection"
+              width={256}
+              height={256}
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="rounded-2xl overflow-hidden border border-border/60 bg-card h-32">
+            <Image
+              src="/it-consulting-business-solutions.jpg"
+              alt="IT consulting solutions"
+              width={256}
+              height={256}
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="rounded-2xl overflow-hidden border border-border/60 bg-card h-32">
+            <Image
+              src="/digital-transformation-innovation.jpg"
+              alt="Digital transformation"
+              width={256}
+              height={256}
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
       </div>
     </section>

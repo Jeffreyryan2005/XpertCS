@@ -13,6 +13,10 @@ export const metadata: Metadata = {
     "XPERTCS delivers cloud, secure infrastructure, and IT consulting with immersive web experiences, ambient motion, and 3D interactions.",
   generator: "v0.app",
   metadataBase: new URL("https://example.com"),
+  icons: {
+    icon: "/favicon.jpg",
+    apple: "/favicon.jpg",
+  },
 }
 
 function ThemeInitScript() {
