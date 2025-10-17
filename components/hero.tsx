@@ -57,12 +57,6 @@ export function Hero() {
               Read more
             </a>
           </div>
-          <ul className="mt-4 sm:mt-5 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-foreground/70 font-medium">
-            <li>Cloud Technologies</li>
-            <li>Secure Infrastructure</li>
-            <li>IT Consultancy</li>
-            <li>Managed Services</li>
-          </ul>
         </div>
 
         <div className="md:col-span-3 relative h-48 sm:h-64 md:h-80 lg:h-96 rounded-2xl sm:rounded-3xl overflow-hidden fancy-frame soft-glow">
