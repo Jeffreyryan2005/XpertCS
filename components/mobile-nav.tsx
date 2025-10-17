@@ -4,7 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { Menu, X } from "lucide-react"
+import { Menu, X, ChevronDown } from "lucide-react"
 
 const NAV_LINKS = [
   { href: "/knowledge-base", label: "Knowledge Base" },
@@ -12,138 +12,153 @@ const NAV_LINKS = [
   { href: "/contact", label: "Contact Us" },
 ]
 
+const ABOUT_LINKS = [
+  { href: "/about#who-we-are", label: "Who We Are" },
+  { href: "/about#what-we-do", label: "What We Do" },
+  { href: "/about#how-we-do-it", label: "How We Do It" },
+  { href: "/about#why-xpert", label: "Why Xpert Consultancy" },
+]
+
+const SERVICE_LINKS = [
+  { href: "/services/cloud-technologies", label: "Cloud Technologies" },
+  { href: "/services/secure-infrastructure", label: "Secure Infrastructure" },
+  { href: "/services/it-consultancy", label: "IT Consultancy" },
+  { href: "/services/managed-services", label: "Managed Services" },
+]
+
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false)
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({})
   const pathname = usePathname()
 
+  const toggleSection = (section: string) => {
+    setExpandedSections((prev) => ({
+      ...prev,
+      [section]: !prev[section],
+    }))
+  }
+
   return (
-    <div className="md:hidden">
+    <>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="p-2 hover:bg-accent rounded-lg transition-colors"
+        className="p-2 hover:bg-accent rounded-lg transition-colors text-foreground"
         aria-label="Toggle menu"
+        aria-expanded={isOpen}
       >
-        {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>
 
       {isOpen && (
-        <div className="fixed top-16 left-0 right-0 bottom-0 bg-background border-b border-border/60 backdrop-blur supports-[backdrop-filter]:bg-background/95 z-40 overflow-y-auto">
-          <nav className="flex flex-col p-4 gap-2">
-            <Link
-              href="/"
-              className={cn(
-                "px-3 py-2 rounded-lg text-sm transition-colors",
-                pathname === "/" ? "bg-accent text-accent-foreground" : "text-muted-foreground hover:text-foreground",
-              )}
-              onClick={() => setIsOpen(false)}
-            >
-              Home
-            </Link>
+        <>
+          <div
+            className="fixed inset-0 z-40 bg-black/20 md:hidden"
+            onClick={() => setIsOpen(false)}
+            aria-hidden="true"
+          />
 
-            <div className="border-t border-border/40 my-2" />
-
-            <div className="px-3 py-2">
-              <p className="text-xs font-semibold text-muted-foreground mb-2">About Us</p>
-              <div className="flex flex-col gap-1 ml-2">
-                <Link
-                  href="/about#who-we-are"
-                  className="text-sm text-muted-foreground hover:text-foreground py-1"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Who We Are
-                </Link>
-                <Link
-                  href="/about#what-we-do"
-                  className="text-sm text-muted-foreground hover:text-foreground py-1"
-                  onClick={() => setIsOpen(false)}
-                >
-                  What We Do
-                </Link>
-                <Link
-                  href="/about#how-we-do-it"
-                  className="text-sm text-muted-foreground hover:text-foreground py-1"
-                  onClick={() => setIsOpen(false)}
-                >
-                  How We Do It
-                </Link>
-                <Link
-                  href="/about#why-xpert"
-                  className="text-sm text-muted-foreground hover:text-foreground py-1"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Why Xpert Consultancy
-                </Link>
-              </div>
-            </div>
-
-            <div className="border-t border-border/40 my-2" />
-
-            <div className="px-3 py-2">
-              <p className="text-xs font-semibold text-muted-foreground mb-2">Services</p>
-              <div className="flex flex-col gap-1 ml-2">
-                <Link
-                  href="/services/cloud-technologies"
-                  className="text-sm text-muted-foreground hover:text-foreground py-1"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Cloud Technologies
-                </Link>
-                <Link
-                  href="/services/secure-infrastructure"
-                  className="text-sm text-muted-foreground hover:text-foreground py-1"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Secure Infrastructure
-                </Link>
-                <Link
-                  href="/services/it-consultancy"
-                  className="text-sm text-muted-foreground hover:text-foreground py-1"
-                  onClick={() => setIsOpen(false)}
-                >
-                  IT Consultancy
-                </Link>
-                <Link
-                  href="/services/managed-services"
-                  className="text-sm text-muted-foreground hover:text-foreground py-1"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Managed Services
-                </Link>
-              </div>
-            </div>
-
-            <div className="border-t border-border/40 my-2" />
-
-            {NAV_LINKS.map((l) => (
+          <div className="fixed top-[60px] left-0 right-0 z-50 max-h-[calc(100vh-60px)] bg-background border-b border-border/60 backdrop-blur supports-[backdrop-filter]:bg-background/95 overflow-y-auto md:hidden">
+            <nav className="flex flex-col p-4">
               <Link
-                key={l.href}
-                href={l.href}
+                href="/"
                 className={cn(
-                  "px-3 py-2 rounded-lg text-sm transition-colors",
-                  pathname === l.href
-                    ? "bg-accent text-accent-foreground"
-                    : "text-muted-foreground hover:text-foreground",
+                  "px-4 py-3 rounded-lg text-sm font-medium transition-colors",
+                  pathname === "/" ? "bg-primary/10 text-primary" : "text-foreground hover:bg-accent/50",
                 )}
                 onClick={() => setIsOpen(false)}
               >
-                {l.label}
+                Home
               </Link>
-            ))}
 
-            <div className="border-t border-border/40 my-2" />
+              <div className="border-t border-border/40 my-2" />
 
-            <a
-              href="https://helpdesk.xpertcs.com/login?redirectTo=%2F"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3 py-2 rounded-lg bg-primary text-primary-foreground text-sm text-center hover:opacity-90 transition-opacity"
-              onClick={() => setIsOpen(false)}
-            >
-              Help Desk
-            </a>
-          </nav>
-        </div>
+              <button
+                onClick={() => toggleSection("about")}
+                className="flex items-center justify-between px-4 py-3 text-left hover:bg-accent/30 rounded-lg transition-colors"
+              >
+                <p className="text-xs font-semibold text-primary uppercase tracking-wide">About Us</p>
+                <ChevronDown
+                  className={cn(
+                    "w-4 h-4 text-primary transition-transform duration-200",
+                    expandedSections["about"] && "rotate-180",
+                  )}
+                />
+              </button>
+              {expandedSections["about"] && (
+                <div className="flex flex-col gap-0 pl-4 py-1">
+                  {ABOUT_LINKS.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="text-sm text-muted-foreground hover:text-foreground py-2.5 px-2 rounded transition-colors"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+
+              <div className="border-t border-border/40 my-2" />
+
+              <button
+                onClick={() => toggleSection("services")}
+                className="flex items-center justify-between px-4 py-3 text-left hover:bg-accent/30 rounded-lg transition-colors"
+              >
+                <p className="text-xs font-semibold text-primary uppercase tracking-wide">Services</p>
+                <ChevronDown
+                  className={cn(
+                    "w-4 h-4 text-primary transition-transform duration-200",
+                    expandedSections["services"] && "rotate-180",
+                  )}
+                />
+              </button>
+              {expandedSections["services"] && (
+                <div className="flex flex-col gap-0 pl-4 py-1">
+                  {SERVICE_LINKS.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="text-sm text-muted-foreground hover:text-foreground py-2.5 px-2 rounded transition-colors"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+
+              <div className="border-t border-border/40 my-2" />
+
+              {NAV_LINKS.map((l) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className={cn(
+                    "px-4 py-3 rounded-lg text-sm font-medium transition-colors",
+                    pathname === l.href ? "bg-primary/10 text-primary" : "text-foreground hover:bg-accent/50",
+                  )}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {l.label}
+                </Link>
+              ))}
+
+              <div className="border-t border-border/40 my-2" />
+
+              <a
+                href="https://helpdesk.xpertcs.com/login?redirectTo=%2F"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-3 rounded-lg bg-primary text-primary-foreground text-sm font-medium text-center hover:bg-primary/90 transition-colors mt-2"
+                onClick={() => setIsOpen(false)}
+              >
+                Help Desk
+              </a>
+            </nav>
+          </div>
+        </>
       )}
-    </div>
+    </>
   )
 }
